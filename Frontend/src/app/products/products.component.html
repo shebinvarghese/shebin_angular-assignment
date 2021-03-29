@@ -1,0 +1,82 @@
+<div class='card'>
+    <div class='card-header'>
+     {{pageTitle}}
+    </div>
+    
+    <div class='card-body'>            
+      <div class='table-responsive'>
+        <table class='table bg-pic'
+              *ngIf = 'products && products.length'>
+          <thead>
+            <tr>
+              <th>
+                <button class='btn btn-primary'
+                (click)='toggleImage()'>
+                  {{showImage? 'Hide' : 'Show'}} Image
+                </button>
+              </th>
+              <th>Product</th>
+              <th>Code</th>
+              <th>Available</th>
+              <th>Price</th>
+              <th>5 Star Rating</th>
+        
+           </tr>
+            <tr>
+              <td></td>
+              <td>Mobile</td>
+              <td>MB007</td>
+              <td>Available</td>
+              <td>Rs.1000-Rs.30000</td>
+              <td>4.2</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td>Sports items</td>
+              <td>SI006</td>
+              <td>Available</td>
+              <td>Rs.10-Rs.35000</td>
+              <td>4.5</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td>Fashion</td>
+              <td>FA005</td>
+              <td>Available</td>
+              <td>Rs.40-Rs.100000</td>
+              <td>4.6</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td>Baby products</td>
+              <td>BP004</td>
+              <td>Available</td>
+              <td>Rs.100-Rs.4000</td>
+              <td>4.7</td>
+            </tr>
+          </thead>
+          <tbody>  
+              <tr *ngFor='let product of products'>
+                  <td><img *ngIf='showImage'
+                    [src] = 'product.imageUrl' 
+                    [title] = 'product.productName'
+                    [style.width.px] = 'imageWidth' 
+                    [style.margin.px] = 'imageMargin'></td>
+                  <td>{{ product.productName|uppercase }}</td>
+                  <td>{{ product.productCode }}</td>
+                  <td>{{ product.releaseDate }}</td>
+                  <td>{{ product.price|currency:'USD' }}</td>
+                  <td>{{ product.starRating }}</td>
+                  <td>
+                    <button class="btn btn-warning" style="cursor:pointer" *ngIf="_auth.loggedIn()" (click)="editProduct(product)" style="margin-left: 20px;"> Edit</button>
+                  </td>
+                  <td>
+                    <button class="btn btn-danger" style="cursor:pointer" *ngIf="_auth.loggedIn()"(click)="deleteProduct(product)"> Delete</button>
+                  </td>
+                </tr>              
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  

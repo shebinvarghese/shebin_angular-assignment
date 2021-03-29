@@ -1,0 +1,12 @@
+/* thead{
+    color:#337AB7
+} */
+td{
+    color: black;
+}
+th{
+    color: blue;
+}
+.bg-pic{
+    background-image: url('/assets/images/2.jpg');
+}
